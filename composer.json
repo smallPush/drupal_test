@@ -1,6 +1,6 @@
 {
   "name": "drupal/recommended-project",
-  "description": "Project template for Drupal 9 projects with a relocated document root",
+  "description": "Project template for Drupal 10 projects with a relocated document root",
   "type": "project",
   "license": "GPL-2.0-or-later",
   "homepage": "https://www.drupal.org/project/drupal",
@@ -17,12 +17,12 @@
       "type": "vcs",
       "url": "https://lab.civicrm.org/extensions/redsys.git"
     },
-   {
+    {
       "type": "package",
-      "package" : {
+      "package": {
         "name": "civicrm/mosaico",
-        "version" : "3.5",
-        "type":"civicrm-extension",
+        "version": "3.5",
+        "type": "civicrm-extension",
         "dist": {
           "type": "zip",
           "url": "https://download.civicrm.org/extension/uk.co.vedaconsulting.mosaico/3.5.1709296836/uk.co.vedaconsulting.mosaico-3.5.1709296836.zip"
@@ -56,10 +56,10 @@
 
     "composer/installers": "^1.9",
 
-    "drupal/core-composer-scaffold": "10.4.7",
-    "drupal/core": "10.4.7",
-    "drupal/core-project-message": "10.4.7",
-    "drupal/core-recommended": "10.4.7",
+    "drupal/core-composer-scaffold": "10.3.1",
+    "drupal/core": "10.3.1",
+    "drupal/core-project-message": "10.3.1",
+    "drupal/core-recommended": "10.3.1",
 
     "drupal/group": "^1.4",
     "drupal/token": "^1.9",
@@ -87,7 +87,13 @@
     "sort-packages": true
   },
   "allow-plugins": {
-    "test/plugin": true
+    "test/plugin": true,
+    "civicrm/civicrm-asset-plugin": true,
+    "composer/installers": true,
+    "drupal/core-composer-scaffold": true,
+    "drupal/core-project-message": true,
+    "dealerdirect/phpcodesniffer-composer-installer": true,
+    "phpstan/extension-installer": true
   },
   "extra": {
     "drupal-scaffold": {
