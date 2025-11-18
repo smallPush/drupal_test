@@ -12,62 +12,22 @@
     {
       "type": "composer",
       "url": "https://packages.drupal.org/8"
-    },
-    {
-      "type": "vcs",
-      "url": "https://lab.civicrm.org/extensions/redsys.git"
-    },
-    {
-      "type": "package",
-      "package": {
-        "name": "civicrm/mosaico",
-        "version": "3.5",
-        "type": "civicrm-extension",
-        "dist": {
-          "type": "zip",
-          "url": "https://download.civicrm.org/extension/uk.co.vedaconsulting.mosaico/3.5.1709296836/uk.co.vedaconsulting.mosaico-3.5.1709296836.zip"
-        }
-      }
-    },
-    {
-      "type": "vcs",
-      "url": "https://lab.civicrm.org/extensions/stripe.git"
-    },
-    {
-      "type": "vcs",
-      "url": "https://lab.civicrm.org/extensions/mjwshared.git"
-    },
-    {
-      "type": "vcs",
-      "url": "https://lab.civicrm.org/extensions/firewall.git"
     }
   ],
   "require": {
-    "civicrm/mosaico": "3.5",
-    "civicrm/civicrm-asset-plugin": "~1.1",
-    "civicrm/civicrm-core": "6.2.0",
-    "civicrm/civicrm-drupal-8": "6.2.0",
-    "civicrm/civicrm-packages": "6.2.0",
-    "civicrm/upgrade-test": "0.5",
-    "civicrm/redsys": "3.1.7",
-    "civicrm/stripe": "6.11.4",
-    "civicrm/mjwshared": "1.4.0",
-    "civicrm/firewall": "1.5.10",
 
     "composer/installers": "^2.0",
 
-    "drupal/core-composer-scaffold": "11.0.5",
-    "drupal/core": "11.0.5",
-    "drupal/core-project-message": "11.0.5",
-    "drupal/core-recommended": "11.0.5",
+    "drupal/core-composer-scaffold": "^11.2",
+    "drupal/core": "^11.2",
+    "drupal/core-project-message":"^11.2",
+    "drupal/core-recommended": "^11.2",
 
     "drupal/token": "^1.9",
-    "drupal/webform": "6.2.7",
-    "drupal/webform_civicrm": "6.3.0",
-    "drupal/twig_tweak": "3.4.0"
+    "drupal/webform": "^6.3@beta",
+    "drupal/twig_tweak": "3.4.1"
   },
   "require-dev": {
-    "semperit/minkcivicrmhelpers": "dev-master as 1.0",
     "behat/mink": "^1.10",
     "drupal/coder": "^8.3",
     "drush/drush": "^13.0",
@@ -90,7 +50,6 @@
   },
   "allow-plugins": {
     "test/plugin": true,
-    "civicrm/civicrm-asset-plugin": true,
     "composer/installers": true,
     "drupal/core-composer-scaffold": true,
     "drupal/core-project-message": true,
@@ -130,10 +89,6 @@
       ],
       "web/themes/custom/{$name}": [
         "type:drupal-custom-theme"
-      ],
-      "web/sites/default/files/civicrm/ext/{$name}": [
-        "type:civicrm-extension",
-        "type:civicrm-ext"
       ]
     },
     "drupal-core-project-message": {
@@ -145,10 +100,6 @@
         "Site created"
       ]
     },
-    "enable-patching": "true",
-    "compile-whitelist": [
-      "civicrm/civicrm-core",
-      "civicrm/composer-compile-lib"
-    ]
+    "enable-patching": "true"
   }
 }
