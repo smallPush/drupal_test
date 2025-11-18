@@ -61,7 +61,6 @@
     "drupal/core-project-message": "11.0.5",
     "drupal/core-recommended": "11.0.5",
 
-    "drupal/group": "^3.0",
     "drupal/token": "^1.9",
     "drupal/webform": "6.2.7",
     "drupal/webform_civicrm": "6.3.0",
