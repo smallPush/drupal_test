@@ -4,10 +4,11 @@ on:
     tags:
       - "*"
 permissions:
-  contents: write # Permiso de escritura necesario para crear releases
+  contents: write
 
 env:
   COMPOSER_FLAGS: "--ansi --no-interaction --no-progress --no-suggest --prefer-dist"
+  ZIP_FILENAME: "artifact-${{ github.ref_name }}.zip"
 
 jobs:
   build:
@@ -15,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4 # Actualizado a v4
+        uses: actions/checkout@v4
 
       - name: "Install PHP"
         uses: "shivammathur/setup-php@v2"
@@ -29,48 +30,43 @@ jobs:
         run: "composer install ${{ env.COMPOSER_FLAGS }}"
 
       - name: Build Zip
-        # Corrección: Definimos explícitamente el nombre con .zip y usamos '.' para incluir todo
-        # -x excluye la carpeta .git para hacer el archivo más ligero
         run: |
-          zip -r "artifact-${{ github.ref_name }}.zip" . -x "*.git*"
+          echo "Creando archivo: ${{ env.ZIP_FILENAME }}"
+          zip -r "${{ env.ZIP_FILENAME }}" . -x "*.git*"
+      - name: "Debug: List files to verify ZIP exists"
+        run: |
+          echo "Listando archivos en el directorio actual:"
+          ls -la
+          echo "Verificando si existe ${{ env.ZIP_FILENAME }}..."
+          if [ -f "${{ env.ZIP_FILENAME }}" ]; then
+            echo "✅ The file exist"
+          else
+            echo "❌ The file not exist"
+            exit 1
+          fi
 
       - name: Parse Version from Tag
         id: parse_version
         run: |
           RAW_TAG="${{ github.ref_name }}"
-          echo "Raw tag: ${RAW_TAG}"
-
-          # Regex ajustado:
-          # Grupo 1: Primera versión (Obligatorio)
-          # Grupo 2: Segunda versión tras un guion (Opcional)
           REGEX="^v?([0-9.]+)(?:-([0-9.]+))?(?:-.*)?$"
-
           if [[ $RAW_TAG =~ $REGEX ]]; then
             DRUPAL_VERSION="${BASH_REMATCH[1]}"
-            # Si existe el segundo grupo, lo asignamos, si no, N/A
             CIVICRM_VERSION="${BASH_REMATCH[2]:-N/A}"
-
-            echo "Successfully parsed versions."
-            echo "Drupal Version: $DRUPAL_VERSION"
-            echo "CiviCRM Version: $CIVICRM_VERSION"
           else
-            echo "Failed to parse versions from tag: $RAW_TAG"
             DRUPAL_VERSION="N/A"
             CIVICRM_VERSION="N/A"
           fi
-
           echo "DRUPAL_VERSION=${DRUPAL_VERSION}" >> $GITHUB_ENV
           echo "CIVICRM_VERSION=${CIVICRM_VERSION}" >> $GITHUB_ENV
 
-      - name: Create Release and Upload Asset
+      - name: Create Release and Upload
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
+          files: ${{ env.ZIP_FILENAME }} # Use the same var
           tag_name: ${{ github.ref_name }}
           name: Release ${{ github.ref_name }}
-          draft: false
-          prerelease: false
-          files: artifact-${{ github.ref_name }}.zip
           body: |
             Release for Drupal version: ${{ env.DRUPAL_VERSION }}
             CiviCRM version: ${{ env.CIVICRM_VERSION }}
