@@ -1,0 +1,146 @@
+{
+  "name": "drupal/recommended-project",
+  "description": "Project template for Drupal 9 projects with a relocated document root",
+  "type": "project",
+  "license": "GPL-2.0-or-later",
+  "homepage": "https://www.drupal.org/project/drupal",
+  "support": {
+    "docs": "https://www.drupal.org/docs/user_guide/en/index.html",
+    "chat": "https://www.drupal.org/node/314178"
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    },
+    {
+      "type": "vcs",
+      "url": "https://lab.civicrm.org/extensions/redsys.git"
+    },
+   {
+      "type": "package",
+      "package" : {
+        "name": "civicrm/mosaico",
+        "version" : "3.5",
+        "type":"civicrm-extension",
+        "dist": {
+          "type": "zip",
+          "url": "https://download.civicrm.org/extension/uk.co.vedaconsulting.mosaico/3.5.1709296836/uk.co.vedaconsulting.mosaico-3.5.1709296836.zip"
+        }
+      }
+    },
+    {
+      "type": "vcs",
+      "url": "https://lab.civicrm.org/extensions/stripe.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://lab.civicrm.org/extensions/mjwshared.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://lab.civicrm.org/extensions/firewall.git"
+    }
+  ],
+  "require": {
+    "civicrm/mosaico": "3.5",
+    "civicrm/civicrm-asset-plugin": "~1.1",
+    "civicrm/civicrm-core": "6.2.0",
+    "civicrm/civicrm-drupal-8": "6.2.0",
+    "civicrm/civicrm-packages": "6.2.0",
+    "civicrm/upgrade-test": "0.5",
+    "civicrm/redsys": "3.1.7",
+    "civicrm/stripe": "6.11.4",
+    "civicrm/mjwshared": "1.4.0",
+    "civicrm/firewall": "1.5.10",
+
+    "composer/installers": "^1.9",
+
+    "drupal/core-composer-scaffold": "10.4.7",
+    "drupal/core": "10.4.7",
+    "drupal/core-project-message": "10.4.7",
+    "drupal/core-recommended": "10.4.7",
+
+    "drupal/group": "^1.4",
+    "drupal/token": "^1.9",
+    "drupal/webform": "6.2.7",
+    "drupal/webform_civicrm": "6.3.0",
+    "drupal/twig_tweak": "3.4.0"
+  },
+  "require-dev": {
+    "semperit/minkcivicrmhelpers": "dev-master as 1.0",
+    "behat/mink": "^1.8",
+    "drupal/coder": "^8.3",
+    "drush/drush": "^12.4.3",
+    "phpunit/phpunit": "^9.5",
+    "symfony/css-selector": "^5.4",
+    "symfony/dom-crawler": "^5.4",
+    "vlucas/phpdotenv": "^2.1"
+  },
+  "conflict": {
+    "drupal/drupal": "*"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "allow-plugins": true,
+    "sort-packages": true
+  },
+  "allow-plugins": {
+    "test/plugin": true
+  },
+  "extra": {
+    "drupal-scaffold": {
+      "locations": {
+        "web-root": "web/"
+      }
+    },
+    "installer-paths": {
+      "web/core": [
+        "type:drupal-core"
+      ],
+      "web/libraries/{$name}": [
+        "type:drupal-library"
+      ],
+      "web/modules/contrib/{$name}": [
+        "type:drupal-module"
+      ],
+      "web/profiles/contrib/{$name}": [
+        "type:drupal-profile"
+      ],
+      "web/themes/contrib/{$name}": [
+        "type:drupal-theme"
+      ],
+      "drush/Commands/contrib/{$name}": [
+        "type:drupal-drush"
+      ],
+      "web/modules/custom/{$name}": [
+        "type:drupal-custom-module"
+      ],
+      "web/profiles/custom/{$name}": [
+        "type:drupal-custom-profile"
+      ],
+      "web/themes/custom/{$name}": [
+        "type:drupal-custom-theme"
+      ],
+      "web/sites/default/files/civicrm/ext/{$name}": [
+        "type:civicrm-extension",
+        "type:civicrm-ext"
+      ]
+    },
+    "drupal-core-project-message": {
+      "include-keys": [
+        "homepage",
+        "support"
+      ],
+      "post-create-project-cmd-message": [
+        "Site created"
+      ]
+    },
+    "enable-patching": "true",
+    "compile-whitelist": [
+      "civicrm/civicrm-core",
+      "civicrm/composer-compile-lib"
+    ]
+  }
+}
