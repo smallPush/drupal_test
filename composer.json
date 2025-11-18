@@ -1,6 +1,6 @@
 {
   "name": "drupal/recommended-project",
-  "description": "Project template for Drupal 10 projects with a relocated document root",
+  "description": "Project template for Drupal 11 projects with a relocated document root",
   "type": "project",
   "license": "GPL-2.0-or-later",
   "homepage": "https://www.drupal.org/project/drupal",
@@ -54,14 +54,14 @@
     "civicrm/mjwshared": "1.4.0",
     "civicrm/firewall": "1.5.10",
 
-    "composer/installers": "^1.9",
+    "composer/installers": "^2.0",
 
-    "drupal/core-composer-scaffold": "10.3.1",
-    "drupal/core": "10.3.1",
-    "drupal/core-project-message": "10.3.1",
-    "drupal/core-recommended": "10.3.1",
+    "drupal/core-composer-scaffold": "11.0.5",
+    "drupal/core": "11.0.5",
+    "drupal/core-project-message": "11.0.5",
+    "drupal/core-recommended": "11.0.5",
 
-    "drupal/group": "^1.4",
+    "drupal/group": "^3.0",
     "drupal/token": "^1.9",
     "drupal/webform": "6.2.7",
     "drupal/webform_civicrm": "6.3.0",
@@ -69,13 +69,13 @@
   },
   "require-dev": {
     "semperit/minkcivicrmhelpers": "dev-master as 1.0",
-    "behat/mink": "^1.8",
+    "behat/mink": "^1.10",
     "drupal/coder": "^8.3",
-    "drush/drush": "^12.4.3",
-    "phpunit/phpunit": "^9.5",
-    "symfony/css-selector": "^5.4",
-    "symfony/dom-crawler": "^5.4",
-    "vlucas/phpdotenv": "^2.1"
+    "drush/drush": "^13.0",
+    "phpunit/phpunit": "^10.5",
+    "symfony/css-selector": "^7.0",
+    "symfony/dom-crawler": "^7.0",
+    "vlucas/phpdotenv": "^5.6"
   },
   "conflict": {
     "drupal/drupal": "*"
@@ -84,7 +84,10 @@
   "prefer-stable": true,
   "config": {
     "allow-plugins": true,
-    "sort-packages": true
+    "sort-packages": true,
+    "platform": {
+        "php": "8.3.0"
+    }
   },
   "allow-plugins": {
     "test/plugin": true,
